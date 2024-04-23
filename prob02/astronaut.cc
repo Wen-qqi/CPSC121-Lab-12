@@ -1,9 +1,8 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Wen Fan
+// CPSC 121L - 11
+// April 29, 2024
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
 //
 // Lab 12-2
 // If it is a pair programming lab please specify partner below.
@@ -22,3 +21,14 @@
 //     }
 // to tell the compiler that each function belongs to the Astronaut class.
 // ===================================================================
+
+Astronaut::Astronaut(const std::string& name, const graphics::Color& color) {
+  name_ = name;
+  color_ = color;
+}
+
+std::string Astronaut::GetName() const { return name_; }
+
+graphics::Color Astronaut::GetColor() const { return color_; }
+
+std::string Astronaut::GetIconFilename() const { return "astronaut.bmp"; }
