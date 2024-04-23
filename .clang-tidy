@@ -1,0 +1,101 @@
+---
+---
+  # Based on Chromium's .clang-tidy.
+  FormatStyle:     google
+  Checks:          '*,
+                    -misc-unused-parameters,
+                    -modernize-use-trailing-return-type,
+                    -google-build-using-namespace,
+                    -cppcoreguidelines-avoid-magic-numbers,
+                    -readability-magic-numbers,
+                    -fuchsia-default-arguments-calls,
+                    -llvm-header-guard,
+                    -llvmlibc-restrict-system-libc-headers,
+                    -llvmlibc-implementation-in-namespace,
+                    -bugprone-narrowing-conversions,
+                    -altera-unroll-loops,
+                    -cppcoreguidelines-narrowing-conversions,
+                    -readability-identifier-length,
+                    -modernize-use-nodiscard,
+                    -fuchsia-statically-constructed-objects,
+                    -cert-err58-cpp,
+                    -cppcoreguidelines-special-member-functions,
+                    -hicpp-special-member-functions,
+                    -cppcoreguidelines-prefer-member-initializer,
+                    -fuchsia-default-arguments-declarations,
+                    -fuchsia-overloaded-operator,
+                    -cert-oop54-cpp,
+                    -fuchsia-default-arguments-declarations,
+                    -google-global-names-in-headers,
+                    -cppcoreguidelines-avoid-c-arrays,
+                    -hicpp-avoid-c-arrays,modernize-avoid-c-arrays,
+                    -altera-id-dependent-backward-branch,
+                    -bugprone-easily-swappable-parameters,
+                    -modernize-avoid-c-arrays,
+                    -modernize-pass-by-value,
+                    -cppcoreguidelines-virtual-class-destructor,
+                    -performance-unnecessary-value-param,
+                    -hicpp-braces-around-statements,
+                    -readability-braces-around-statements,
+                    -readability-identifier-naming,
+                    -llvm-else-after-return,
+                    -readability-else-after-return,
+                    -readability-function-cognitive-complexity,
+                    -readability-convert-member-functions-to-static,
+                    -modernize-use-default-member-init,
+                    -llvmlibc-callee-namespace'
+  CheckOptions:
+    # This relaxes modernize-use-emplace in some cases; we might want to make it
+    # more aggressive in the future. See discussion on
+    # https://groups.google.com/a/chromium.org/g/cxx/c/noMMTNYiM0w .
+    - key:          modernize-use-emplace.IgnoreImplicitConstructors
+      value:        1
+    - key: readability-identifier-naming.ClassCase
+      value: CamelCase
+    - key: readability-identifier-naming.ClassMemberCase
+      value: lower_case
+    - key: readability-identifier-naming.ConstexprVariableCase
+      value: CamelCase
+    - key: readability-identifier-naming.ConstexprVariablePrefix
+      value: k
+    - key: readability-identifier-naming.EnumCase
+      value: CamelCase
+    - key: readability-identifier-naming.EnumConstantCase
+      value: CamelCase
+    - key: readability-identifier-naming.EnumConstantPrefix
+      value: k
+    - key: readability-identifier-naming.FunctionCase
+      value: CamelCase
+    - key: readability-identifier-naming.GlobalConstantCase
+      value: CamelCase
+    - key: readability-identifier-naming.GlobalConstantPrefix
+      value: k
+    - key: readability-identifier-naming.StaticConstantCase
+      value: CamelCase
+    - key: readability-identifier-naming.StaticConstantPrefix
+      value: k
+    - key: readability-identifier-naming.StaticVariableCase
+      value: lower_case
+    - key: readability-identifier-naming.MacroDefinitionCase
+      value: UPPER_CASE
+    - key: readability-identifier-naming.MacroDefinitionIgnoredRegexp
+      value: '^[A-Z]+(_[A-Z]+)*_$'
+    - key: readability-identifier-naming.MemberCase
+      value: lower_case
+    - key: readability-identifier-naming.PrivateMemberSuffix
+      value: _
+    - key: readability-identifier-naming.PublicMemberSuffix
+      value: ''
+    - key: readability-identifier-naming.NamespaceCase
+      value: lower_case
+    - key: readability-identifier-naming.ParameterCase
+      value: lower_case
+    - key: readability-identifier-naming.TypeAliasCase
+      value: CamelCase
+    - key: readability-identifier-naming.TypedefCase
+      value: CamelCase
+    - key: readability-identifier-naming.VariableCase
+      value: lower_case
+    - key: readability-identifier-naming.IgnoreMainLikeFunctions
+      value: 1
+...
