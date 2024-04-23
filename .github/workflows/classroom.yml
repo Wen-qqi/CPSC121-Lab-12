@@ -1,0 +1,81 @@
+name: Autograding Tests
+'on':
+- push
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Verify implementation of prob01
+      id: verify-implementation-of-prob01
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Verify implementation of prob01
+        setup-command: ''
+        command: cd prob01 && make build
+        timeout: 4
+        max-score: 1
+    - name: Verify implementation of prob02
+      id: verify-implementation-of-prob02
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Verify implementation of prob02
+        setup-command: ''
+        command: cd prob02 && make build
+        timeout: 3
+        max-score: 1
+    - name: Check readability of prob01
+      id: check-readability-of-prob01
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Check readability of prob01
+        setup-command: ''
+        command: cd prob01 && make clean && make stylecheck && make formatcheck
+        timeout: 3
+        max-score: 1
+    - name: Check readability of prob02
+      id: check-readability-of-prob02
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Check readability of prob02
+        setup-command: ''
+        command: cd prob02 && make clean && make stylecheck && make formatcheck
+        timeout: 3
+        max-score: 1
+    - name: Prob01 All tests
+      id: prob01-all-tests
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Prob01 All tests
+        setup-command: ''
+        command: cd prob01 && make clean && make test
+        timeout: 5
+        max-score: 10
+    - name: Prob02 all tests
+      id: prob02-all-tests
+      uses: education/autograding-command-grader@v1
+      with:
+        test-name: Prob02 all tests
+        setup-command: ''
+        command: cd prob02 && make clean && make test
+        timeout: 5
+        max-score: 16
+    - name: Autograding Reporter
+      uses: education/autograding-grading-reporter@v1
+      env:
+        VERIFY-IMPLEMENTATION-OF-PROB01_RESULTS: "${{steps.verify-implementation-of-prob01.outputs.result}}"
+        VERIFY-IMPLEMENTATION-OF-PROB02_RESULTS: "${{steps.verify-implementation-of-prob02.outputs.result}}"
+        CHECK-READABILITY-OF-PROB01_RESULTS: "${{steps.check-readability-of-prob01.outputs.result}}"
+        CHECK-READABILITY-OF-PROB02_RESULTS: "${{steps.check-readability-of-prob02.outputs.result}}"
+        PROB01-ALL-TESTS_RESULTS: "${{steps.prob01-all-tests.outputs.result}}"
+        PROB02-ALL-TESTS_RESULTS: "${{steps.prob02-all-tests.outputs.result}}"
+      with:
+        runners: verify-implementation-of-prob01,verify-implementation-of-prob02,check-readability-of-prob01,check-readability-of-prob02,prob01-all-tests,prob02-all-tests
