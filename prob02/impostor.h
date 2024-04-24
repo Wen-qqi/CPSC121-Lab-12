@@ -1,9 +1,8 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Wen Fan
+// CPSC 121L - 11
+// April 29, 2024
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
 //
 // Lab 12-2
 // If it is a pair programming lab please specify partner below.
@@ -21,5 +20,13 @@
 // Define the Impostor class here, which inherits from the Astronaut
 // base class. Refer to the README for instructions.
 // ===================================================================
+class Impostor : public Astronaut {
+ public:
+  Impostor() : Astronaut("no evil", graphics::Color(256, 0, 0)) {}
+  Impostor(const std::string& name, const graphics::Color& color)
+      : Astronaut{name, color} {}
+
+  void Kill(Crewmate& crewmate) const;
+};
 
 #endif  // IMPOSTOR_H
