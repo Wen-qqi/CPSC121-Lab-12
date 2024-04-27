@@ -1,17 +1,20 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Wen Fan
+// CPSC 121L - 11
+// April 29, 2024
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
 //
 // Lab 12-1
 // If it is a pair programming lab please specify partner below.
 // Partner: @peteranteater
 
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <string>
+
+#ifndef STAR_H
+#define STAR_H
 
 class Star {
  public:
@@ -28,4 +31,26 @@ class Star {
   //      times the volume of the sun that the star was.
   //   4. An accessor function, `GetName` for the star's name.
   // ============================================================
+  Star(std::string star_name, double solar_radius)
+      : star_name_(star_name), solar_radius_(solar_radius) {
+    std::cout << "The star " << star_name << " was born" << std::endl;
+  }
+
+  ~Star() {
+    std::cout << std::fixed << std::setprecision(2);
+    std::cout << "The star " << GetName() << " has gone supernova."
+              << "It was ";
+    std::cout << std::pow(solar_radius_, 3);
+    std::cout << " times the volume of our sun.";
+    std::cout << std::endl;
+  }
+
+  std::string GetName() {
+    return star_name_;
+  }
+
+ private:
+  std::string star_name_;
+  double solar_radius_;
 };
+#endif
