@@ -1,9 +1,8 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Wen Fan
+// CPSC 121L - 11
+// April 29, 2024
+// WenFan@csu.fullerton.edu
+// @Wen-qqi
 //
 // Lab 12-1
 // If it is a pair programming lab please specify partner below.
@@ -31,5 +30,18 @@ int main() {
   // destructor since it automatically gets called when the
   // Star goes out of scope, at the end of each iteration.
   // =======================================================
+  for (int i = 0; num > 0; i++) {
+    std::string name;
+    std::cout << "Enter star " << i << "'s name: ";
+    std::cin >> name;
+
+    double radius = 0.0;
+    std::cout << "What is the solar radius? ";
+    std::cin >> radius;
+
+    Star my_star(name, radius);
+    std::cout << "Created star " << name << std::endl;
+    num = num - 1;
+  }
   return 0;
 }
